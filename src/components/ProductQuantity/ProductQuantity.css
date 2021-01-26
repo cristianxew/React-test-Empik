@@ -1,0 +1,14 @@
+.product-quantity {
+  display: flex;
+}
+
+.product-quantity__icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2rem;
+}
+.product-quantity__icons svg:first-child {
+  margin-right: 1rem;
+}
