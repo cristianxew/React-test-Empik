@@ -2,14 +2,19 @@ import React from "react";
 import ProductQuantity from "../ProductQuantity/ProductQuantity";
 
 const CartItem = (props) => {
-  const { name, price, max, min } = props.product;
+  const { product } = props;
+  const { name, price } = product;
 
   return (
     <li className="cart-list__row">
       <div>
         {name} | <span>{`Cena: ${price}zł`}</span>
       </div>
-      <ProductQuantity />
+      <ProductQuantity
+        subtractFromTotal={props.subtractFromTotal}
+        addToTotal={props.addToTotal}
+        {...product}
+      />
     </li>
   );
 };
