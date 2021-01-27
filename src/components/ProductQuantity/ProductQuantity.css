@@ -1,14 +1,45 @@
 .product-quantity {
   display: flex;
+  position: relative;
 }
 
-.product-quantity__icons {
+.product-quantity__buttons {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   margin-left: 2rem;
 }
-.product-quantity__icons svg:first-child {
+
+.product-quantity__buttons .btn {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-height: 18px;
+}
+
+.product-quantity__buttons .btn-disabled {
+  cursor: initial;
+}
+.product-quantity__buttons .btn-disabled:focus {
+  outline: none;
+}
+
+.product-quantity__buttons .btn-disabled svg path {
+  fill: rgb(189, 189, 189);
+  stroke: rgb(189, 189, 189);
+}
+
+.product-quantity__buttons .btn:first-child {
   margin-right: 1rem;
+}
+
+.product-quantity__error {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 14px;
+  color: red;
 }
