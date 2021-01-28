@@ -43,3 +43,38 @@
   font-size: 14px;
   color: red;
 }
+
+@media only screen and (max-width: 767px) {
+  .product-quantity__buttons {
+    margin-left: 1rem;
+  }
+  .product-quantity__buttons .btn:first-child {
+    margin-right: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 565px) {
+  .product-quantity {
+    margin-left: 0.5rem;
+  }
+  .product-quantity p {
+    max-width: 150px;
+  }
+  .product-quantity__buttons {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-left: 0;
+  }
+  .product-quantity__buttons .btn:first-child {
+    margin-right: 0;
+  }
+  .product-quantity__buttons .btn {
+    margin-top: 5px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .product-quantity p {
+    max-width: 100px;
+  }
+}

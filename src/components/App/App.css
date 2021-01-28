@@ -21,3 +21,36 @@
 .total {
   margin-top: 2rem;
 }
+
+@media only screen and (max-width: 767px) {
+  .container {
+    padding: 0 1rem;
+  }
+  .cart-list {
+    font-size: 16px;
+  }
+  .cart-list__row__product-desc {
+    max-width: 200px;
+  }
+}
+
+@media only screen and (max-width: 565px) {
+  .cart-list {
+    font-size: 14px;
+  }
+  .cart-list__row__product-desc {
+    max-width: 150px;
+  }
+  .container h1 {
+    font-size: 1.8rem;
+  }
+  .container h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .cart-list__row__product-desc {
+    max-width: 120px;
+  }
+}

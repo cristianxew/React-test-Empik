@@ -7,7 +7,7 @@ const CartItem = (props) => {
 
   return (
     <li className="cart-list__row">
-      <div>
+      <div className="cart-list__row__product-desc">
         {name} | <span>{`Cena: ${price}zł`}</span>
       </div>
       <ProductQuantity
