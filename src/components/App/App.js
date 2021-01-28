@@ -6,6 +6,7 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
 
+  //This functions will handle adding and subtracting from the total and will be passed down to the ProductQuantity component as a props
   const addToTotal = (value) => {
     setTotal(parseFloat(total) + value);
   };
@@ -15,11 +16,14 @@ const App = () => {
 
   const url = window.location.href;
 
+  //after component mount fetch products from /api/cart and set product's state
   useEffect(() => {
     fetch(`${url}api/cart`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
+
+        //setting up the total value for the initial list of products
         const total = data.reduce(
           (accum, item) => accum + parseFloat(item.price),
           0

@@ -16,9 +16,12 @@ const ProductQuantity = ({
   const [productQuantity, setProductQuantity] = useState(1);
   const [error, setError] = useState("");
 
+  //Using custom hook to debounce the value of ProductQuantity
   const debouncedProductQuantity = useDebounce(productQuantity, 500);
 
-  const checkQuantity = async (quantity) => {
+  //Asking to the endpoint api/product/check if the quantity is valid
+  const checkQuantity = async (quantity, id) => {
+    //getting the root url dynamically
     const rootUrl = window.location.href;
     const settings = {
       method: "POST",
@@ -26,7 +29,7 @@ const ProductQuantity = ({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        pid: pid,
+        pid: id,
         quantity: quantity,
       }),
     };
@@ -37,8 +40,10 @@ const ProductQuantity = ({
       );
       const data = await fetchResponse.json();
       if (data.isError) {
+        //if there is an error set the PoductQuantity to min and reset the total value to how it was before
         setProductQuantity(min);
         subtractFromTotal(parseFloat(price) * (productQuantity - 1));
+        //Show error to client
         setError(`Dostępnych jest tylko ${max} produktów`);
       }
       console.log(data);
@@ -47,18 +52,21 @@ const ProductQuantity = ({
     }
   };
 
+  //Fire the checkQuantity function after each time ProductQuantity change but with a debounce of 500 milliseconds
   useEffect(() => {
     if (productQuantity > 1) {
-      checkQuantity(debouncedProductQuantity);
+      checkQuantity(debouncedProductQuantity, pid);
     }
   }, [debouncedProductQuantity]);
 
+  //handler for onClick plus button
   const handleAddOne = () => {
     setError("");
     setProductQuantity(productQuantity + 1);
     addToTotal(parseFloat(price));
   };
 
+  //handler for onClick minus button
   const handleRemoveOne = () => {
     setError("");
     if (productQuantity > min) {
@@ -73,6 +81,7 @@ const ProductQuantity = ({
         Obecnie masz <strong>{productQuantity}</strong> sztuk produktu
       </p>
       <div className="product-quantity__buttons">
+        {/* if isBlocked onClick function will be null and button disabled */}
         <button
           onClick={isBlocked ? null : handleRemoveOne}
           className={`btn ${isBlocked ? "btn-disabled" : ""}`}
@@ -86,6 +95,7 @@ const ProductQuantity = ({
           <PlusIcon />
         </button>
       </div>
+      {/* Show error to client if there is one */}
       {error !== "" && <span className="product-quantity__error">{error}</span>}
     </div>
   );
