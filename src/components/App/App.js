@@ -6,7 +6,7 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
 
-  //This functions will handle adding and subtracting from the total and will be passed down to the ProductQuantity component as a props
+  //This functions will handle adding and subtracting from the total value and will be passed down to the ProductQuantity component as a props
   const addToTotal = (value) => {
     setTotal(parseFloat(total) + value);
   };
